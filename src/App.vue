@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <MovieList>    
+    </MovieList>   
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue';
+import MovieList from './components/MovieList.vue';
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Header,
+    MovieList
   }
-}
+};
 </script>
 
 <style lang="less">
+@import "~normalize.css";
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #17181b;
+  font-style: Verdana, sans-serif;
+  color: white;
+  height: 100vh; /*Body height 100% Viewport height*/
+  flex-direction: column;
+  display: flex;
+}
+/* Extra small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+  img {
+    width: 80px
+  }
+  div {
+    width: 80px
+  }
+  p {
+    font-size: 60%
+  }
 }
 </style>
