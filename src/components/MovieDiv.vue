@@ -13,7 +13,7 @@ import { moviesState } from '../states/movies-state'
 export default {
   name: 'MovieDiv',
   props: {
-    movie: { type: Object,required : true }
+    movie: { type: Object, required: true }
   },
   methods: {
     getImgUrl () {

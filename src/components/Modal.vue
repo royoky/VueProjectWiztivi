@@ -11,18 +11,33 @@
 <script>
 import { moviesState } from '../states/movies-state'
 export default {
-    name: 'Modal',
-    data () {
-        return { moviesState }
+  name: 'Modal',
+  data () {
+    return { moviesState }
+  },
+  methods: {
+    getImgUrl () {
+      return `/posters/${moviesState.selectedMovie.poster}`
     },
-    methods: {
-        getImgUrl () {
-            return `/posters/${this.moviesState.selectedMovie.poster}`
-        },
-        closePopup () {
-        this.moviesState.selectedMovie = null
-        }
+    closePopup () {
+      moviesState.selectedMovie = null
+    },
+    // Function to detect the Escape key and close the popup
+    detectEscapeKey (event) {
+      console.log(`input event. you have just inputed "${event.keyCode}"`)
+      if (event.keyCode === 27) {
+        this.closePopup()
+      }
     }
+  },
+  created () {
+    addEventListener('keydown', this.detectEscapeKey)
+    //addEventListener('keydown', console.log)
+  },
+  beforeDestroy () {
+    removeEventListener('keydown', this.detectEscapeKey)
+  }
+
 }
 </script>
 
@@ -38,15 +53,18 @@ export default {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(10, 3, 3, 0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .modal-content {
     background-color: black;
-    margin: 2px; /* 15% from the top and centered */
+    margin-left: auto; /* 15% from the top and centered */
+    margin-right: auto;
+    margin-top: 70px;
     padding: 20px;
     border: 1px solid #888;
     width: 80vw; /* Could be more or less, depending on screen size */
+    justify-content: center
 }
 /* The Close Button */
 .close {
@@ -60,5 +78,5 @@ export default {
     color: black;
     text-decoration: none;
     cursor: pointer;
-} 
+}
 </style>

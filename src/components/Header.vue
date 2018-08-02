@@ -1,13 +1,13 @@
 <template>
     <header>
-    	<h1>Available movies</h1>
-  	</header>
+      <h1>Available movies</h1>
+    </header>
 </template>
 
 <script>
 export default {
-  name: "Header"
-};
+  name: 'Header'
+}
 </script>
 
 <style scoped lang="less">

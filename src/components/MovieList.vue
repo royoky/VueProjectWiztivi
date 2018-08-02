@@ -10,7 +10,7 @@ import MovieDiv from './MovieDiv.vue'
 import Modal from './Modal.vue'
 import { moviesState } from '../states/movies-state'
 export default {
-  name: "MovieList",
+  name: 'MovieList',
   components: {
     MovieDiv,
     Modal
@@ -22,10 +22,10 @@ export default {
   },
   async created () {
     try {
-        let response = await fetch('data/moviesTab.json')
-        this.moviesState.movies = await response.json(); //do not forget the () !!
-    } catch(error) {
-        console.error(error);
+      let response = await fetch('data/moviesTab.json')
+      this.moviesState.movies = await response.json() // do not forget the () !!
+    } catch (error) {
+      console.error(error)
     }
   }
 }

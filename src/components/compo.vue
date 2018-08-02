@@ -6,9 +6,9 @@
 
 <script>
 export default {
-    name: 'compo',
-    props: {
-        title: { type:string, required: true}
-    }
+  name: 'compo',
+  props: {
+    title: { type: string, required: true}
+  }
 }
 </script>

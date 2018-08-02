@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <Header></Header>
-    <MovieList></MovieList> 
+    <MovieList></MovieList>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import MovieList from './components/MovieList.vue';
+import Header from './components/Header.vue'
+import MovieList from './components/MovieList.vue'
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Header,
     MovieList
   }
-};
+}
 </script>
 
 <style lang="less">
@@ -26,7 +26,7 @@ export default {
   color: white;
   height: 100vh; /*Body height 100% Viewport height*/
   flex-direction: column;
-  display: flex;  
+  display: flex;
   @media only screen and (max-width: 400px) { /* Extra small devices (phones, 400px and down) */
     img {
       width: 80px

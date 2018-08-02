@@ -1,4 +1,4 @@
 export const moviesState = {
-    movies: null,
-    selectedMovie: null
+  movies: null,
+  selectedMovie: null
 }
