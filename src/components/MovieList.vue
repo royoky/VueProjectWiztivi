@@ -1,7 +1,7 @@
 <template>
 <main>
-  <movie-div v-for="(movie, index) in movies" :key="index" :movie="movie" :select-movie="selectMovie"/>
-  <modal v-if="selectedMovie" :movie="selectedMovie" :close-popup="closePopup"/>
+  <movie-div v-for="(movie, index) in movies" :key="index" :movie="movie" @clickOnMovie="selectMovie"/>
+  <modal v-if="selectedMovie" :movie="selectedMovie" @closePopup="closePopup"/>
 </main>
 </template>
 
@@ -17,26 +17,7 @@ export default {
   },
   data() {
     return {
-      movies: [
-/*         {
-          title: "Jurassic Park",
-          url: "http://www.allocine.fr/film/fichefilm_gen_cfilm=8488.html",
-          src: "JurassicPark.jpg",
-          imgAlt: "Jurassic Park"
-        },
-        {
-          title: "Jurassic Park",
-          url: "http://www.allocine.fr/film/fichefilm_gen_cfilm=8488.html",
-          src: "JurassicPark.jpg",
-          imgAlt: "Jurassic Park"
-        },
-        {
-          title: "Jurassic Park",
-          url: "http://www.allocine.fr/film/fichefilm_gen_cfilm=8488.html",
-          src: "JurassicPark.jpg",
-          imgAlt: "Jurassic Park"
-        } */        
-      ],
+      movies: [],
       selectedMovie: null
     }
   },

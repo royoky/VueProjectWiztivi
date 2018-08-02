@@ -1,5 +1,5 @@
 <template>
-    <div @click="selectMovie(movie)">
+    <div @click="$emit('clickOnMovie', movie)">
         <!-- <a :href="movie.link"> -->
         <img :alt="movie.alt" :src="getImgUrl()">
         <p>{{ movie.title }}</p>
@@ -11,13 +11,7 @@
 export default {
   name: 'MovieDiv',
   props: {
-    movie: { type: Object, required : true },
-    selectMovie: Function,
-    closePopup: Function
-    /*imgSrc: { type: String, required: true },
-    imgAlt: { type: String, required: true },
-    imgTitle: { type: String, required: true },
-    divURL: { type: String, required: true } */
+    movie: { type: Object, required : true }
   },
   methods: {
       getImgUrl () {

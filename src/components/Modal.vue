@@ -1,7 +1,7 @@
 <template>
     <div id='myModal' class='modal'>
         <div class='modal-content'>
-            <span class='close' @click="closePopup()">&times;</span>
+            <span class='close' @click="$emit('closePopup')">&times;</span>
             <p>{{ movie.synopsis }}</p>
             <img :src="getImgUrl()" :alt="movie.alt">
         </div>
@@ -12,8 +12,7 @@
 export default {
     name: 'Modal',
     props: {
-        movie: { type: Object, required: true },
-        closePopup: Function,
+        movie: { type: Object, required: true }
     },
     methods: {
         getImgUrl () {
@@ -31,8 +30,8 @@ export default {
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100vw; /* Full width */
-    height: 100vh; /* Full height */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(10, 3, 3, 0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
