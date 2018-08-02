@@ -1,22 +1,26 @@
 <template>
     <div id='myModal' class='modal'>
         <div class='modal-content'>
-            <span class='close' @click="$emit('closePopup')">&times;</span>
-            <p>{{ movie.synopsis }}</p>
-            <img :src="getImgUrl()" :alt="movie.alt">
+            <span class='close' @click="closePopup">&times;</span>
+            <p>{{ moviesState.selectedMovie.synopsis }}</p>
+            <img :src="getImgUrl()" :alt="moviesState.selectedMovie.alt">
         </div>
     </div>
 </template>
 
 <script>
+import { moviesState } from '../states/movies-state'
 export default {
     name: 'Modal',
-    props: {
-        movie: { type: Object, required: true }
+    data () {
+        return { moviesState }
     },
     methods: {
         getImgUrl () {
-            return `/posters/${this.movie.poster}`
+            return `/posters/${this.moviesState.selectedMovie.poster}`
+        },
+        closePopup () {
+        this.moviesState.selectedMovie = null
         }
     }
 }

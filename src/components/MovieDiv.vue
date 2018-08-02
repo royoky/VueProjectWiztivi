@@ -1,5 +1,5 @@
 <template>
-    <div @click="$emit('clickOnMovie', movie)">
+    <div @click="selectMovie()">
         <!-- <a :href="movie.link"> -->
         <img :alt="movie.alt" :src="getImgUrl()">
         <p>{{ movie.title }}</p>
@@ -8,16 +8,24 @@
 </template>
 
 <script>
+import { moviesState } from '../states/movies-state'
+
 export default {
   name: 'MovieDiv',
   props: {
-    movie: { type: Object, required : true }
+    movie: { type: Object,required : true }
   },
   methods: {
-      getImgUrl () {
-        return `/posters/${this.movie.poster}`
-      }
+    getImgUrl () {
+      return `/posters/${this.movie.poster}`
+    },
+    selectMovie () {
+      this.moviesState.selectedMovie = this.movie
     }
+  },
+  data () {
+    return { moviesState }
+  }
 }
 </script>
 
