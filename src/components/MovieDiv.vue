@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <a :href="divURL">
-        <img :alt="imgAlt" :src="imgSrc">
-        <p>{{ imgTitle }}</p>
-        </a>
+    <div @click="selectMovie(movie)">
+        <!-- <a :href="movie.link"> -->
+        <img :alt="movie.alt" :src="getImgUrl()">
+        <p>{{ movie.title }}</p>
+        <!-- </a> -->
     </div>
 </template>
 
@@ -11,11 +11,19 @@
 export default {
   name: 'MovieDiv',
   props: {
-    imgSrc: { type: String, required: true },
+    movie: { type: Object, required : true },
+    selectMovie: Function,
+    closePopup: Function
+    /*imgSrc: { type: String, required: true },
     imgAlt: { type: String, required: true },
     imgTitle: { type: String, required: true },
-    divURL: { type: String, required: true }
-  }
+    divURL: { type: String, required: true } */
+  },
+  methods: {
+      getImgUrl () {
+        return `/posters/${this.movie.poster}`
+      }
+    }
 }
 </script>
 

@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <MovieList>    
-    </MovieList>   
+    <MovieList></MovieList> 
   </div>
 </template>
 
@@ -27,18 +26,17 @@ export default {
   color: white;
   height: 100vh; /*Body height 100% Viewport height*/
   flex-direction: column;
-  display: flex;
-}
-/* Extra small devices (phones, 400px and down) */
-@media only screen and (max-width: 400px) {
-  img {
-    width: 80px
-  }
-  div {
-    width: 80px
-  }
-  p {
-    font-size: 60%
+  display: flex;  
+  @media only screen and (max-width: 400px) { /* Extra small devices (phones, 400px and down) */
+    img {
+      width: 80px
+      }
+    div {
+      width: 80px
+    }
+    p {
+      font-size: 60%
+    }
   }
 }
 </style>

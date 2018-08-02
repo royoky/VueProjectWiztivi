@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>{{ title }}</span>
+        <span :src="title">{{ title }}</span>
     </div>
 </template>
 
@@ -8,14 +8,7 @@
 export default {
     name: 'compo',
     props: {
-        title: { type: String, required: true }
-    },
-    data () {
-        return {
-            movies: [
-                { title: 'title', url: 'url'}
-        ]
-        }
+        title: { type:string, required: true}
     }
 }
 </script>

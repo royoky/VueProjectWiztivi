@@ -1,15 +1,19 @@
 <template>
 <main>
-  <movie-div v-for="(movie, index) in movies" :key="index" :img-src="getImgUrl(movie)" :img-title="movie.title" :img-alt="movie.alt" :div-u-r-l="movie.link"/>
+  <movie-div v-for="(movie, index) in movies" :key="index" :movie="movie" :select-movie="selectMovie"/>
+  <modal v-if="selectedMovie" :movie="selectedMovie" :close-popup="closePopup"/>
 </main>
 </template>
 
 <script>
-import MovieDiv from './MovieDiv.vue';
+import MovieDiv from './MovieDiv.vue'
+import Modal from './Modal.vue'
+import modalVue from './Modal.vue';
 export default {
   name: "MovieList",
   components: {
-    MovieDiv
+    MovieDiv,
+    Modal
   },
   data() {
     return {
@@ -32,7 +36,8 @@ export default {
           src: "JurassicPark.jpg",
           imgAlt: "Jurassic Park"
         } */        
-      ]
+      ],
+      selectedMovie: null
     }
   },
   async created () {
@@ -45,10 +50,14 @@ export default {
     }
   },
   methods: {
-      getImgUrl (movie) {
-        return `/posters/${movie.poster}`
-      }
+    selectMovie (movie) {
+      this.selectedMovie = movie
+    },
+    closePopup () {
+      console.log("clicked")
+      this.selectedMovie = null
     }
+  }  
 }
 </script>
 
