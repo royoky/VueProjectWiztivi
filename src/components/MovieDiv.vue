@@ -1,5 +1,5 @@
 <template>
-    <div @click="selectMovie()">
+    <div @click="selectMovie()" :class="{ 'focused': isFocused }">
         <!-- <a :href="movie.link"> -->
         <img :alt="movie.alt" :src="getImgUrl()">
         <p>{{ movie.title }}</p>
@@ -21,10 +21,19 @@ export default {
     },
     selectMovie () {
       this.moviesState.selectedMovie = this.movie
+    },
+    setFocus () {
+      this.isFocused = true
+    },
+    removeFocus () {
+      this.isFocused = false
     }
   },
   data () {
-    return { moviesState }
+    return {
+      moviesState,
+      isFocused: false
+    }
   }
 }
 </script>
@@ -33,6 +42,7 @@ export default {
 div {
   padding: 15px;
   width: 150px;
+  height: 100%;
   a {
     color: inherit;
     text-decoration-line: none;
@@ -54,6 +64,9 @@ div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  &.focused {
+    background-color:gray
   }
 }
 </style>

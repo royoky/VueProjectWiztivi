@@ -1,6 +1,6 @@
 <template>
-<main>
-  <movie-div v-for="(movie, index) in moviesState.movies" :key="index" :movie="movie"/>
+<main :class="{ 'focused': isFocused }">
+  <movie-div v-for="(movie, index) in moviesState.movies" :key="index" :movie="movie" ref="Movie"/>
   <modal v-if="moviesState.selectedMovie"/>
 </main>
 </template>
@@ -17,7 +17,18 @@ export default {
   },
   data () {
     return {
-      moviesState
+      moviesState,
+      isFocused: false
+    }
+  },
+  methods: {
+    setFocus (i) {
+      //this.isFocused = true
+      this.$refs.Movie[i].setFocus()
+    },
+    removeFocus (i) {
+      //this.isFocused = false
+      this.$refs.Movie[i].removeFocus()
     }
   },
   async created () {
@@ -41,5 +52,8 @@ main {
   flex-grow: 1;
   align-content: flex-start;
   padding-top: 5px;
+  &.focused {
+    background-color: gray
+  }
 }
 </style>

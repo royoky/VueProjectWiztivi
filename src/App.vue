@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <MovieList></MovieList>
+    <Header ref="Header"></Header>
+    <MovieList ref="MovieList"></MovieList>
   </div>
 </template>
 
@@ -14,8 +14,43 @@ export default {
   components: {
     Header,
     MovieList
+  },
+  data() {
+    return {i: 0}
+  },
+  created () {
+    addEventListener('keydown', this.detectKey)
+  },
+  methods: {
+    detectKey (event) {
+      console.log(`input event. you have just inputed "${event.keyCode}"`)
+      switch (event.keyCode) {
+        case 40:
+          this.$refs.Header.removeFocus()
+          this.$refs.MovieList.setFocus(this.i)
+          break
+       // Down key
+        case 38:
+          this.$refs.Header.setFocus()
+          this.$refs.MovieList.removeFocus(this.i)
+          break
+        case 39:
+          if (this.$refs.Header.isFocused === false) {
+            this.i++
+            this.$refs.MovieList.setFocus(this.i)
+            this.$refs.MovieList.removeFocus(this.i-1)
+            break}
+        case 37:
+          if (this.$refs.Header.isFocused === false) {
+            this.i--
+            this.$refs.MovieList.setFocus(this.i)
+            this.$refs.MovieList.removeFocus(this.i+1)
+            break
+            }
+          }
+      }
+    }
   }
-}
 </script>
 
 <style lang="less">

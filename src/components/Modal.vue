@@ -28,14 +28,22 @@ export default {
       if (event.keyCode === 27) {
         this.closePopup()
       }
+    },
+    // When the user clicks anywhere outside of the modal, close it
+    clickOutsideModal (event) {
+      // console.log('clicked')
+      if (event.target.className === 'modal') {
+        this.closePopup()
+      }
     }
   },
   created () {
     addEventListener('keydown', this.detectEscapeKey)
-    //addEventListener('keydown', console.log)
+    window.addEventListener('click', this.clickOutsideModal)
   },
   beforeDestroy () {
     removeEventListener('keydown', this.detectEscapeKey)
+    window.removeEventListener('click', this.clickOutsideModal)
   }
 
 }
