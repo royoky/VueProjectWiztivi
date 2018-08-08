@@ -52,6 +52,7 @@ main {
   flex-grow: 1;
   align-content: flex-start;
   padding-top: 5px;
+  justify-items: center;
   &.focused {
     background-color: gray
   }

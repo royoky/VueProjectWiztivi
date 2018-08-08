@@ -1,17 +1,23 @@
 <template>
     <div @click="selectMovie()" :class="{ 'focused': isFocused }">
         <!-- <a :href="movie.link"> -->
+        <loader v-if="!loading"/>
         <img :alt="movie.alt" :src="getImgUrl()">
         <p>{{ movie.title }}</p>
         <!-- </a> -->
+        
     </div>
 </template>
 
 <script>
 import { moviesState } from '../states/movies-state'
+import Loader from './Loader'
 
 export default {
   name: 'MovieDiv',
+  components: {
+    Loader
+  },
   props: {
     movie: { type: Object, required: true }
   },
@@ -23,9 +29,11 @@ export default {
       try {
         // console.log('http://localhost:5000/movie/' + this.movie.id)
         // this.moviesState.selectedMovie = this.movie
+        this.loading = true
         let response = await fetch('http://localhost:5000/movie/' + this.movie.id)
         console.log(this.moviesState.selectedMovie)
         this.moviesState.selectedMovie = await response.json() // do not forget the () !!
+        this.loading = false
       } catch (error) {
         console.error(error)
       }
@@ -40,7 +48,8 @@ export default {
   data () {
     return {
       moviesState,
-      isFocused: false
+      isFocused: false,
+      loading: false
     }
   }
 }
@@ -48,6 +57,7 @@ export default {
 
 <style scoped lang="less">
 div {
+  position: relative;
   padding: 15px;
   width: 150px;
   height: 100%;
@@ -72,7 +82,7 @@ div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    justify-content: center;
+    text-align: center;
   }
   &.focused {
     background-color:gray
