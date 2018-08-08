@@ -19,8 +19,16 @@ export default {
     getImgUrl () {
       return `/posters/${this.movie.poster}`
     },
-    selectMovie () {
-      this.moviesState.selectedMovie = this.movie
+    async selectMovie () {
+      try {
+        // console.log('http://localhost:5000/movie/' + this.movie.id)
+        // this.moviesState.selectedMovie = this.movie
+        let response = await fetch('http://localhost:5000/movie/' + this.movie.id)
+        console.log(this.moviesState.selectedMovie)
+        this.moviesState.selectedMovie = await response.json() // do not forget the () !!
+      } catch (error) {
+        console.error(error)
+      }
     },
     setFocus () {
       this.isFocused = true
@@ -64,6 +72,7 @@ div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    justify-content: center;
   }
   &.focused {
     background-color:gray

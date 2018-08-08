@@ -18,23 +18,23 @@ export default {
   data () {
     return {
       moviesState,
-      isFocused: false
+      isFocused: false,
+      numberOfMovies: 0
     }
   },
   methods: {
     setFocus (i) {
-      //this.isFocused = true
       this.$refs.Movie[i].setFocus()
     },
     removeFocus (i) {
-      //this.isFocused = false
       this.$refs.Movie[i].removeFocus()
     }
   },
   async created () {
     try {
-      let response = await fetch('data/moviesTab.json')
+      let response = await fetch('http://localhost:5000/movies')
       this.moviesState.movies = await response.json() // do not forget the () !!
+      this.moviesState.numberOfMovies = this.moviesState.movies.length
     } catch (error) {
       console.error(error)
     }

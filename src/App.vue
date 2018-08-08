@@ -8,6 +8,7 @@
 <script>
 import Header from './components/Header.vue'
 import MovieList from './components/MovieList.vue'
+import { moviesState } from './states/movies-state'
 
 export default {
   name: 'app',
@@ -15,7 +16,7 @@ export default {
     Header,
     MovieList
   },
-  data() {
+  data () {
     return {i: 0}
   },
   created () {
@@ -25,32 +26,32 @@ export default {
     detectKey (event) {
       console.log(`input event. you have just inputed "${event.keyCode}"`)
       switch (event.keyCode) {
-        case 40:
+        case 40: // Down key
           this.$refs.Header.removeFocus()
           this.$refs.MovieList.setFocus(this.i)
           break
-       // Down key
-        case 38:
+        case 38: // Up key
           this.$refs.Header.setFocus()
           this.$refs.MovieList.removeFocus(this.i)
           break
-        case 39:
-          if (this.$refs.Header.isFocused === false) {
+        case 39: // Right key
+          if ((this.$refs.Header.isFocused === false) && (this.i < moviesState.numberOfMovies - 1)) {
             this.i++
             this.$refs.MovieList.setFocus(this.i)
-            this.$refs.MovieList.removeFocus(this.i-1)
-            break}
-        case 37:
-          if (this.$refs.Header.isFocused === false) {
+            this.$refs.MovieList.removeFocus(this.i - 1)
+          } else console.log('reached maximum')
+          break
+        case 37: // Left key
+          if ((this.$refs.Header.isFocused === false) && (this.i > 0)) {
             this.i--
             this.$refs.MovieList.setFocus(this.i)
-            this.$refs.MovieList.removeFocus(this.i+1)
+            this.$refs.MovieList.removeFocus(this.i + 1)
             break
-            }
           }
       }
     }
   }
+}
 </script>
 
 <style lang="less">
