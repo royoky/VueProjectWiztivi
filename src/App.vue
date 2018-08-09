@@ -63,6 +63,7 @@ export default {
   height: 100vh; /*Body height 100% Viewport height*/
   flex-direction: column;
   display: flex;
+  overflow-x: hidden;
   @media only screen and (max-width: 400px) { /* Extra small devices (phones, 400px and down) */
     img {
       width: 80px

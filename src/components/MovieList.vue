@@ -1,6 +1,8 @@
 <template>
-<main :class="{ 'focused': isFocused }">
-  <movie-div v-for="(movie, index) in moviesState.movies" :key="index" :movie="movie" ref="Movie"/>
+<main :class="{ 'animated': moviesState.selectedMovie }">
+  <div class='screen'>
+    <movie-div v-for="(movie, index) in moviesState.movies" :key="index" :movie="movie" ref="Movie"/>
+  </div>
   <modal v-if="moviesState.selectedMovie"/>
 </main>
 </template>
@@ -44,17 +46,24 @@ export default {
 
 <style scoped lang="less">
 main {
+  width: 200vw;
+  height: 100%;
   display: flex;
+  flex-grow: 1;
+  padding-top: 5px;  
+  &.animated{
+    transform: translate3d(-100vw,0, 0);
+    transition: transform 1s;
+}
+}
+.screen {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  overflow: scroll;
-  flex-grow: 1;
+  // overflow-y: scroll;
   align-content: flex-start;
-  padding-top: 5px;
-  justify-items: center;
-  &.focused {
-    background-color: gray
-  }
 }
 </style>

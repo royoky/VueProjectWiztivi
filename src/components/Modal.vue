@@ -9,82 +9,81 @@
 </template>
 
 <script>
-import { moviesState } from '../states/movies-state'
+import { moviesState } from "../states/movies-state";
 export default {
-  name: 'Modal',
-  data () {
-    return { moviesState }
+  name: "Modal",
+  data() {
+    return { moviesState };
   },
   methods: {
-    getImgUrl () {
-      return `/posters/${moviesState.selectedMovie.poster}`
+    getImgUrl() {
+      return `/posters/${moviesState.selectedMovie.poster}`;
     },
-    closePopup () {
-      moviesState.selectedMovie = null
+    closePopup() {
+      moviesState.selectedMovie = null;
     },
     // Function to detect the Escape key and close the popup
-    detectEscapeKey (event) {
-      console.log(`input event. you have just inputed "${event.keyCode}"`)
+    detectEscapeKey(event) {
+      console.log(`input event. you have just inputed "${event.keyCode}"`);
       if (event.keyCode === 27) {
-        this.closePopup()
+        this.closePopup();
       }
     },
     // When the user clicks anywhere outside of the modal, close it
-    clickOutsideModal (event) {
+    clickOutsideModal(event) {
       // console.log('clicked')
-      if (event.target.className === 'modal') {
-        this.closePopup()
+      if (event.target.className === "modal") {
+        this.closePopup();
       }
     }
   },
-  created () {
-    addEventListener('keydown', this.detectEscapeKey)
-    window.addEventListener('click', this.clickOutsideModal)
+  created() {
+    addEventListener("keydown", this.detectEscapeKey);
+    window.addEventListener("click", this.clickOutsideModal);
   },
-  beforeDestroy () {
-    removeEventListener('keydown', this.detectEscapeKey)
-    window.removeEventListener('click', this.clickOutsideModal)
+  beforeDestroy() {
+    removeEventListener("keydown", this.detectEscapeKey);
+    window.removeEventListener("click", this.clickOutsideModal);
   }
-
-}
+};
 </script>
 
 <style lang='less' scoped>
-  /* The Modal (background) */
+/* The Modal (background) */
 .modal {
-    /*display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(10, 3, 3, 0); /* Fallback color */
-    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  /*display: none; /* Hidden by default */
+  //position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  right: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(10, 3, 3, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .modal-content {
-    background-color: black;
-    margin-left: auto; /* 15% from the top and centered */
-    margin-right: auto;
-    margin-top: 70px;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80vw; /* Could be more or less, depending on screen size */
-    justify-content: center
+  background-color: black;
+  margin-left: auto; /* 15% from the top and centered */
+  margin-right: auto;
+  margin-top: 70px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80vw; /* Could be more or less, depending on screen size */
+  justify-content: center;
 }
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
     <div @click="selectMovie()" :class="{ 'focused': isFocused }">
         <!-- <a :href="movie.link"> -->
-        <loader v-if="!loading"/>
+        <loader v-if="loading"/>
         <img :alt="movie.alt" :src="getImgUrl()">
         <p>{{ movie.title }}</p>
         <!-- </a> -->
-        
     </div>
 </template>
 
@@ -60,7 +59,7 @@ div {
   position: relative;
   padding: 15px;
   width: 150px;
-  height: 100%;
+  height: fit-content;
   a {
     color: inherit;
     text-decoration-line: none;
