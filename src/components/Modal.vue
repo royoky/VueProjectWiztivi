@@ -9,43 +9,43 @@
 </template>
 
 <script>
-import { moviesState } from "../states/movies-state";
+import { moviesState } from '../states/movies-state'
 export default {
-  name: "Modal",
-  data() {
-    return { moviesState };
+  name: 'Modal',
+  data () {
+    return { moviesState }
   },
   methods: {
-    getImgUrl() {
-      return `/posters/${moviesState.selectedMovie.poster}`;
+    getImgUrl () {
+      return `http://localhost:5000/posters/${moviesState.selectedMovie.poster}`
     },
-    closePopup() {
-      moviesState.selectedMovie = null;
+    closePopup () {
+      moviesState.selectedMovie = null
     },
     // Function to detect the Escape key and close the popup
-    detectEscapeKey(event) {
-      console.log(`input event. you have just inputed "${event.keyCode}"`);
+    detectEscapeKey (event) {
+      console.log(`input event. you have just inputed "${event.keyCode}"`)
       if (event.keyCode === 27) {
-        this.closePopup();
+        this.closePopup()
       }
     },
     // When the user clicks anywhere outside of the modal, close it
-    clickOutsideModal(event) {
+    clickOutsideModal (event) {
       // console.log('clicked')
-      if (event.target.className === "modal") {
-        this.closePopup();
+      if (event.target.className === 'modal') {
+        this.closePopup()
       }
     }
   },
-  created() {
-    addEventListener("keydown", this.detectEscapeKey);
-    window.addEventListener("click", this.clickOutsideModal);
+  created () {
+    addEventListener('keydown', this.detectEscapeKey)
+    window.addEventListener('click', this.clickOutsideModal)
   },
-  beforeDestroy() {
-    removeEventListener("keydown", this.detectEscapeKey);
-    window.removeEventListener("click", this.clickOutsideModal);
+  beforeDestroy () {
+    removeEventListener('keydown', this.detectEscapeKey)
+    window.removeEventListener('click', this.clickOutsideModal)
   }
-};
+}
 </script>
 
 <style lang='less' scoped>

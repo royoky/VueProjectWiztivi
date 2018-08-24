@@ -1,22 +1,28 @@
 <template>
     <div class="wrapper">
-    <div class="loader"/></div>
+        <div class="loader"/></div>
 </template>
 
 <script>
 export default {
-    name: 'Loader'
+  name: 'Loader'
 }
 </script>
 
 <style lang="less" scoped>
 .wrapper {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    padding: 0px;
+    height: 202.31px;
+    width: 150px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px
 }
 .loader {
-    position: relative;
+    //position: absolute;
     z-index: 1;
     border: 5px solid #f3f3f3; /* Light grey */
     border-top: 5px solid #3498db; /* Blue */
@@ -24,8 +30,6 @@ export default {
     width: 30px;
     height: 30px;
     animation: spin 2s linear infinite;
-    justify-content: center;
-    justify-items: center;
 }
 
 @keyframes spin {

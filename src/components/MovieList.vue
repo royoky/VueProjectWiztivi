@@ -2,6 +2,8 @@
 <main :class="{ 'animated': moviesState.selectedMovie }">
   <div class='screen'>
     <movie-div v-for="(movie, index) in moviesState.movies" :key="index" :movie="movie" ref="Movie"/>
+    <!-- <button onclick="location.href='/MovieForm'" type="button">Administration</button> -->
+    <router-link to="/MovieForm">Administration</router-link>
   </div>
   <modal v-if="moviesState.selectedMovie"/>
 </main>
@@ -50,7 +52,7 @@ main {
   height: 100%;
   display: flex;
   flex-grow: 1;
-  padding-top: 5px;  
+  padding-top: 5px;
   &.animated{
     transform: translate3d(-100vw,0, 0);
     transition: transform 1s;

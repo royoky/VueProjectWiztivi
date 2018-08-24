@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header ref="Header"></Header>
-    <MovieList ref="MovieList"></MovieList>
+    <!-- <MovieList ref="MovieList"></MovieList> -->
+    <router-view ref="MovieList"></router-view>
   </div>
 </template>
 
@@ -13,8 +14,7 @@ import { moviesState } from './states/movies-state'
 export default {
   name: 'app',
   components: {
-    Header,
-    MovieList
+    Header
   },
   data () {
     return {i: 0}

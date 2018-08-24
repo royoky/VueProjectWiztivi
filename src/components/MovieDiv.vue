@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getImgUrl () {
-      return `/posters/${this.movie.poster}`
+      return `http://localhost:5000/posters/${this.movie.poster}`
     },
     async selectMovie () {
       try {
