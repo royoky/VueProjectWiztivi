@@ -78,49 +78,42 @@ export default {
 
 <style lang="less" scoped>
 div {
-  //display: flex;
-  //flex-grow: 1;
-  //flex-direction: column;
-  //width: min-content;
-  //position: absolute;
-  // top:0;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
-  // margin: auto;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-&.errors {
-  background-color: red;
-  width:fit-content;
-  padding-left: 1px;
-  padding-right: 1px;
-  padding-top : 5px;
-  padding-bottom: 5px;
-  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center
   }
-input[type=text] {
-  padding:5px;
-  border:2px solid #ccc;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-input[type=text]:focus {border-color:rgb(23, 73, 211) ; }
+  &.errors {
+    background-color: red;
+    width:fit-content;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top : 5px;
+    padding-bottom: 5px;
+    
+    }
+  input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    &#synopsis {
+      height: 300px;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+  input[type=text]:focus {border-color:rgb(23, 73, 211) ; }
 
-input[type=submit] {
-  padding:5px 15px;
-  background:#ccc;
-  border:0 none;
-  cursor:pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  margin: 5px 15px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  }
+  input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 5px 15px;
+    }
 }
 </style>
 

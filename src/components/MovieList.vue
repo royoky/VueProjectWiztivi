@@ -65,7 +65,7 @@ main {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   align-content: flex-start;
 }
 </style>
