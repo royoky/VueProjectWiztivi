@@ -2,8 +2,14 @@
     <div id='myModal' class='modal'>
         <div class='modal-content'>
             <span class='close' @click="closePopup">&times;</span>
-            <p>{{ moviesState.selectedMovie.synopsis }}</p>
-            <img :src="getImgUrl()" :alt="moviesState.selectedMovie.alt">
+            <div id='img-synop-container'>
+              <div id='img-container'>
+                <h4>{{ moviesState.selectedMovie.title }}</h4>
+                <img :src="getImgUrl()" :alt="moviesState.selectedMovie.alt">
+              </div>
+              <p>{{ moviesState.selectedMovie.synopsis }}</p>
+            </div>
+            <div id='div-close' @click="closePopup">Close</div>
         </div>
     </div>
 </template>
@@ -54,8 +60,26 @@ export default {
 
 <style lang='less' scoped>
 div{
+  h4 {
+    width: 100%;
+    justify-content: left;
+    margin-left: 2%;
+  }
+  div#img-synop-container {
+    display: flex;
+    flex-direction: row;
+    //flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-shrink: 1;
+  }
+  div#img-container {
+    padding: 0% 2% 3% 0%;
+    text-align: center;
+  }
   img {
-    width: 200px;
+    min-width: 50px;
+    max-width: 200px;
   }
   /* The Modal (background) */
   .modal {
@@ -64,25 +88,32 @@ div{
     z-index: 1; /* Sit on top */
     right: 0;
     top: 0;
+    bottom: 0;
+    left: 0;
     width: 100vw; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(10, 3, 3, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+    // overflow: scroll;
   }
   /* Modal Content/Box */
   .modal-content {
+    position: relative;
     background-color: black;
-    margin-left: auto; /* 15% from the top and centered */
+    margin-left: auto;
     margin-right: auto;
     margin-top: 70px;
     padding: 20px;
     border: 1px solid #888;
-    width: 80vw; /* Could be more or less, depending on screen size */
+    width: 80%; /* Could be more or less, depending on screen size */
     justify-content: center;
   }
   /* The Close Button */
   .close {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -92,6 +123,19 @@ div{
   .close:focus {
     color: black;
     text-decoration: none;
+    cursor: pointer;
+  }
+  #div-close {
+    //width: 100%;
+    background-color: blue;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+  }
+  #div-close:hover {
     cursor: pointer;
   }
 }

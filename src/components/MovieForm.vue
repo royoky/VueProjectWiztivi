@@ -2,15 +2,15 @@
   <div>
     <form @submit.prevent="submit">
       <p>Movie Title</p>
-      <input type="text" v-model="title" placeholder="Movie title">
+      <input type="text" v-model="movie.title" placeholder="Movie title">
       <p>Movie Poster</p>
-      <input type="text" v-model="poster" placeholder="Movie poster">
+      <input type="text" v-model="movie.poster" placeholder="Movie poster">
       <p>Image alternative text</p>
-      <input type="text" v-model="alt" placeholder="Alternative text">
+      <input type="text" v-model="movie.alt" placeholder="Alternative text">
       <p>Movie link</p>
-      <input type="text" v-model="link" placeholder="Movie link">
+      <input type="text" v-model="movie.link" placeholder="Movie link">
       <p>Synopsis</p>
-      <input id="synopsis" type="text" v-model="synopsis" placeholder="Synopsis">
+      <textarea id="synopsis" type="text" v-model="movie.synopsis" placeholder="Synopsis"/>
       <div v-if="errorMessages" class="errors">
         <p v-for="(msg, index) in errorMessages" :key="index">{{ msg }}</p>
       </div>
@@ -26,52 +26,51 @@ export default {
   name: 'MovieForm',
   data () {
     return {
-      title: '',
-      poster: '',
-      alt: '',
-      link:'',
-      synopsis:'',
-      id:0,
+      movie: {
+        title: null,
+        poster: null,
+        alt: null,
+        link: null,
+        synopsis: null
+      },
       errorMessages: null
     }
   },
   methods: {
     submit () {
-/*       console.log('title', this.title)
-      console.log('link', this.link)
-      console.log('synopsis', this.synopsis) */
       this.errorMessages = null
       this.sendForm()
     },
     async sendForm () {
       try {
-        let response = await fetch('http://localhost:5000/MovieForm', {
+        let response = await fetch(`http://localhost:5000/MovieForm/${this.movie._id || ''}`, {
           method: 'post',
           headers: {
-            "Content-type": "application/json; charset=UTF-8"
+            'Content-type': 'application/json; charset=UTF-8'
           },
-          body: JSON.stringify ({
-            title: this.title,
-            poster: this.poster,
-            alt: this.alt,
-            link: this.link,
-            synopsis: this.synopsis,
-            id:0
-          })
+          body: JSON.stringify(this.movie)
         })
         if (!response.ok) {
-          if (response.status == 400) {
+          if (response.status === 400) {
             this.errorMessages = await response.json()
-            }
-            else {
-              this.errorMessages = ['unexpected error, try again']
-            }
-        } else { this.$router.push('/')}
-        
+          } else {
+            this.errorMessages = ['unexpected error, try again']
+          }
+        } else {
+          // moviesState.selectedMovie = null
+          this.$router.push('/')
+        }
       } catch (error) {
-      this.errorMessages = [error.message]
+        this.errorMessages = [error.message]
+        console.log(error.stack)
       }
     }
+  },
+  created () {
+    Object.assign(this.movie, moviesState.selectedMovie)
+  },
+  destroyed () {
+    if (moviesState.selectedMovie) moviesState.selectedMovie = null
   }
 }
 </script>
@@ -90,21 +89,22 @@ div {
     padding-right: 1px;
     padding-top : 5px;
     padding-bottom: 5px;
-    
     }
-  input[type=text] {
+  [type=text] {
     padding:5px;
     border:2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    &#synopsis {
-      height: 300px;
+  }
+  [type=text]:focus {
+    border-color:rgb(23, 73, 211) ;
+    }
+  textarea#synopsis {
+      height: 250px;
+      width: 250px;
       word-wrap: break-word;
       word-break: break-all;
     }
-  }
-  input[type=text]:focus {border-color:rgb(23, 73, 211) ; }
-
   input[type=submit] {
     padding:5px 15px;
     background:#ccc;
@@ -116,4 +116,3 @@ div {
     }
 }
 </style>
-

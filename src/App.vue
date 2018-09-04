@@ -8,7 +8,7 @@
 
 <script>
 import Header from './components/Header.vue'
-import MovieList from './components/MovieList.vue'
+// import MovieList from './components/MovieList.vue'
 import { moviesState } from './states/movies-state'
 
 export default {
@@ -63,17 +63,17 @@ export default {
   height: 100vh; /*Body height 100% Viewport height*/
   flex-direction: column;
   display: flex;
-  overflow-x: hidden;
-  @media only screen and (max-width: 400px) { /* Extra small devices (phones, 400px and down) */
-    img {
-      width: 80px
-      }
-    div {
-      width: 80px
-    }
-    p {
-      font-size: 60%
-    }
-  }
+  overflow: hidden;
+  // @media only screen and (max-width: 400px) { /* Extra small devices (phones, 400px and down) */
+  //   img {
+  //     width: 80px
+  //     }
+  //   div {
+  //     width: 80px
+  //   }
+  //   p {
+  //     font-size: 60%
+  //   }
+  // }
 }
 </style>
