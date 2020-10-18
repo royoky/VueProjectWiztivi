@@ -17,7 +17,9 @@ export default {
     Header
   },
   data () {
-    return {i: 0}
+    return {
+      i: 0
+    }
   },
   created () {
     addEventListener('keydown', this.detectKey)

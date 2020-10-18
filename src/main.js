@@ -5,7 +5,10 @@ import MovieList from './components/MovieList.vue'
 import MovieForm from './components/MovieForm.vue'
 import VueSocket from 'vue-socket.io'
 
-Vue.use(VueSocket, 'http://localhost:5010')
+Vue.use(new VueSocket({
+  connection: 'http://localhost:5010'
+}))
+
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)

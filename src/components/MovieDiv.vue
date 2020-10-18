@@ -50,7 +50,7 @@ export default {
     async deleteMovie () {
       try {
         this.loading = true
-        let response = await fetch(`http://localhost:5000/movie/${this.movie._id}`, {
+        await fetch(`http://localhost:5000/movie/${this.movie._id}`, {
           method: 'delete'
         })
         let ind = this.moviesState.movies.findIndex(movie => {
